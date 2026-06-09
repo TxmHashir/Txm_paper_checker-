@@ -3,39 +3,42 @@ workflows:
     name: Android Build
     instance_type: mac_mini_m2
     environment:
+      flutter: stable
       vars:
         GEMINI_API_KEY: $GEMINI_API_KEY
-        FCI_BUILD_DIR: $FCI_BUILD_DIR
-    triggers:
-      - push
-      - pull_request
+    triggering:
+      events:
+        - push
+        - pull_request
     scripts:
       - name: Create .env file
         script: |
-          echo "GEMINI_API_KEY=$GEMINI_API_KEY" > .env
+          printf "GEMINI_API_KEY=%s\n" "$GEMINI_API_KEY" > .env
       - name: Install dependencies
         script: flutter pub get
-      - name: Build APK
-        script: flutter build apk --release
+      - name: Build Android App Bundle
+        script: flutter build appbundle --debug
     artifacts:
-      - build/app/outputs/**/*.apk
       - build/app/outputs/**/*.aab
+      - build/app/outputs/**/*.apk
 
   ios-workflow:
     name: iOS Build
     instance_type: mac_mini_m2
     environment:
+      flutter: stable
       vars:
         GEMINI_API_KEY: $GEMINI_API_KEY
-    triggers:
-      - push
+    triggering:
+      events:
+        - push
     scripts:
       - name: Create .env file
         script: |
-          echo "GEMINI_API_KEY=$GEMINI_API_KEY" > .env
+          printf "GEMINI_API_KEY=%s\n" "$GEMINI_API_KEY" > .env
       - name: Install dependencies
         script: flutter pub get
       - name: Build iOS
-        script: flutter build ios --release --no-codesign
+        script: flutter build ios --debug --no-codesign
     artifacts:
       - build/ios/iphoneos/**/*.app
