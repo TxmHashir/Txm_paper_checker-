@@ -13,7 +13,13 @@ import 'screens/batch_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    // In CI/CD or when .env is missing, continue without it
+    // Make sure to configure env vars as build arguments or CI/CD secrets
+    debugPrint('Warning: .env file not found. Using environment fallbacks.');
+  }
   runApp(const MyApp());
 }
 
