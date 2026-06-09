@@ -16,11 +16,10 @@ workflows:
           printf "GEMINI_API_KEY=%s\n" "$GEMINI_API_KEY" > .env
       - name: Install dependencies
         script: flutter pub get
-      - name: Build Android App Bundle
-        script: flutter build appbundle --debug
+      - name: Build Android APK
+        script: flutter build apk --debug
     artifacts:
-      - build/app/outputs/**/*.aab
-      - build/app/outputs/**/*.apk
+      - build/app/outputs/flutter-apk/*.apk
 
   ios-workflow:
     name: iOS Build
