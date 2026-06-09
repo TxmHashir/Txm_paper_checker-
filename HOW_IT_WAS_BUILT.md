@@ -12,7 +12,7 @@ VisionQR is a Flutter mobile application built with AI assistance (Claude Code).
 |---|---|
 | Framework | Flutter (Dart), targeting Android & iOS |
 | AI Vision | Google Gemini 2.5 Flash (`google_generative_ai` package) |
-| QR Scanning | `mobile_scanner` v5 |
+| QR Scanning | `mobile_scanner`     i am v5 |
 | QR Generation | `qr_flutter` |
 | Persistence | `shared_preferences` (JSON-encoded scan history) |
 | Image Handling | `image_picker`, `gal`, `share_plus` |
