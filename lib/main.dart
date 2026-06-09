@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'utils/color_utils.dart';
-import 'widgets/pop_scope.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/scanner_screen.dart';
 import 'screens/history_screen.dart';
